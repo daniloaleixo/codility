@@ -10,8 +10,8 @@ def solution(A):
 
     if len(A) < 2: return A[0]
 
-    only_negs = []
     num_negs = 0
+    least_negative = -10001
 
     while i < len(A) - 1:
 
@@ -19,16 +19,16 @@ def solution(A):
 
     	if A[i] > 0:
     		max_sum += A[i]
-    		only_negs = []
     		num_negs = 0
     	else:
-    		only_negs.append(A[i])
     		num_negs += 1
+    		if A[i] > least_negative: least_negative = A[i]
 
     		if num_negs == 6:
     			#print "aqui", only_negs, max(only_negs)
-    			max_sum += max(only_negs)
+    			max_sum += least_negative
     			num_negs = 0
+    			least_negative = -10001
 
 
     	#print  i, A[i], max_sum
@@ -41,9 +41,10 @@ def solution(A):
 
 
     
-
 print solution([1,1,1,1,2,1,1,1,1,2,1,1,1,1])
 print solution([1, -2, 0, 9, -1, -2])
 print solution([1, -2, -2, -9, -1, -2, -5, -3])
 print solution([1])
 print solution([1, 1])
+lista = [-1] * 1000000
+print solution(lista)
